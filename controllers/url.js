@@ -11,7 +11,7 @@ async function handleGenerateNewShortURL(req,res) {
         shortId :shortID,
         redirectURL: body.url,
     })
-    return res.render('home',{ id:shortID });
+    return res.render('home',{ id:shortID, baseUrl: process.env.BASE_URL });
     // return res.json({ id:shortID }   
 }
 
