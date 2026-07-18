@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,21 +11,28 @@
             font-weight: bold;
             font-size: 15px;
         }
-        </style>
+    </style>
 </head>
+
 <body>
     <h1>Welcome to the URL Shortener</h1>
     <div>
-        <form action = "/" method = "post">
+        <form action="/url" method="post">
             <label>Enter Your Original URL: </label>
-            <input type="text" name = "url" placeholder = "Enter your original URL here" required>
-            <button type = "submit">Generate</button>
+            <input type="text" name="url" placeholder="Enter your original URL here" required>
+            <button type="submit">Generate</button>
         </form>
-        
+
     </div>
     <% if (locals.id) { %>
-        <p class="alert-success"> short url generated:<a href="/<%= locals.id %>"><%= BASE_URL.process.env %>/<%= locals.id %></a></p>
-    <% } %>
+        <p class="alert-success">
+            Short URL Generated:
+            <a href="/<%= id %>">
+                <%= baseUrl %>/<%= id %>
+            </a>
+        </p>
+        <% } %>
 
 </body>
+
 </html>

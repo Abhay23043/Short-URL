@@ -1,5 +1,6 @@
 const shortid = require('shortid');
 const url = require('../models/url');
+const baseUrl = `${req.protocol}://${req.get("host")}`;
 
 async function handleGenerateNewShortURL(req,res) {
     const body = req.body;
@@ -11,7 +12,10 @@ async function handleGenerateNewShortURL(req,res) {
         shortId :shortID,
         redirectURL: body.url,
     })
-    return res.render('home',{ id:shortID, baseUrl: process.env.BASE_URL });
+    return res.render("home", {
+    id: shortID,
+    baseUrl,
+});
     // return res.json({ id:shortID }   
 }
 
