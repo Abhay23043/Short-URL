@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post("/",handleGenerateNewShortURL);
 
-router.get("/:shortId",handleRedirectToOriginalURL);
+// router.get("/:shortId",handleRedirectToOriginalURL);
 
 module.exports = router;

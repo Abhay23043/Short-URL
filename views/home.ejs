@@ -23,7 +23,7 @@
         
     </div>
     <% if (locals.id) { %>
-        <p class="alert-success"> short url generated:<a href="/<%= locals.id %>"><%= baseUrl %>/<%= locals.id %></a></p>
+        <p class="alert-success"> short url generated:<a href="/<%= locals.id %>"><%= BASE_URL.process.env %>/<%= locals.id %></a></p>
     <% } %>
 
 </body>

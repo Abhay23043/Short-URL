@@ -9,6 +9,9 @@ dotenv.config();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 const connectDB = require('./database/db');
+const {
+    handleRedirectToOriginalURL
+} = require('./controllers/url');
  
 // view engine to ejs
 app.set('view engine', 'ejs');
@@ -19,8 +22,10 @@ app.use(express.urlencoded({extended:false}));// so we can get data from form in
 connectDB();
 
 app.use("/url",urlRoute);
+
 app.use("/",staticRoute);
 
+app.get("/:shortId", handleRedirectToOriginalURL);
 
 
 PORT = process.env.PORT || 8000;
