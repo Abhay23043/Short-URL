@@ -25,7 +25,7 @@ app.use("/url",urlRoute);
 
 app.use("/",staticRoute);
 
-app.get("/:shortId", handleRedirectToOriginalURL);
+app.get("/url/:shortId", handleRedirectToOriginalURL);
 
 
 PORT = process.env.PORT || 8000;
