@@ -10,6 +10,11 @@ const urlSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+},{
+    createdBy:{
+        type: mongoose.Schema.Types.objectId,
+        ref: "users",
+    }
 })
 
 //model creation
