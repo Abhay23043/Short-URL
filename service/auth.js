@@ -7,12 +7,17 @@ function setUser(user){
     return jwt.sign({
         _id:user.id,
         email:user.email,
+        role:user.role,
     },process.env.SECRET);
 }
 function getUser(token){
     if(!token) return null;
-    return jwt.verify(token, process.env.SECRET);
-} 
+    try {
+        return jwt.verify(token, process.env.SECRET);
+    } catch (err) {
+        return null;
+    } 
+}
 
 module.exports = {
     setUser,

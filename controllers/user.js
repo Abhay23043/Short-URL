@@ -8,12 +8,17 @@ const {v4: uuidv4} = require('uuid');
 
 async function handleUserSignup(req,res){
     const { name,email,password } =req.body;
-    await User.create({
+    const user = await User.create({
         name,
         email,
         password
     });
-    return res.status(201).redirect("/");
+    const token = setUser(user);
+    res.cookie("uid", token, {
+    httpOnly: true,
+});
+
+return res.redirect("/");
 }
 
 async function handleUserLogin(req,res){
@@ -22,8 +27,12 @@ async function handleUserLogin(req,res){
     if(!user) return res.status(404).render("login").send({error: 'Invalid Id and Password'});
 
     const token = setUser(user);
-    res.cookie('uid',token);
-    return res.status(200).redirect("/").send({ message: 'Login successful' });
+    res.cookie("uid", token, {
+        httpOnly: true,
+    });
+
+    return res.redirect("/");
+    
 }
 
 module.exports = {

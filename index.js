@@ -10,7 +10,7 @@ const connectDB = require('./database/db');
 const {
     handleRedirectToOriginalURL
 } = require('./controllers/url');
-const { rectricttoLoginUserOnly } = require('./middleware/authMiddleware');
+const { checkForAuthentication,restrictTo } = require('./middleware/authMiddleware');
 
 const urlRoute = require('./routes/url');
 const staticRoute = require('./routes/staticRouter');
@@ -25,10 +25,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));// so we can get data from form in req.body
 connectDB();
 app.use(cookieParser());
+app.use(checkForAuthentication);
 
-app.use("/url", rectricttoLoginUserOnly, urlRoute);
-app.use("/user",userRoute);
+
 app.use("/",staticRoute);
+app.use("/user",userRoute);
+app.use("/url", restrictTo(["NORMAL","ADMIN"]), urlRoute);
 
 app.get("/url/:shortId", handleRedirectToOriginalURL);
 

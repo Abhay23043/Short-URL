@@ -4,27 +4,233 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Url Shortener</title>
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#0ea5e9,#3b82f6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    width:90%;
+    max-width:1300px;
+    height:80vh;
+
+    display:flex;
+
+    background:#fff;
+    border-radius:25px;
+    overflow:hidden;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+}
+
+/* LEFT */
+
+.left{
+    flex:1.2;
+
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:70px;
+}
+
+.left h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.left p{
+    font-size:20px;
+    line-height:35px;
+    max-width:450px;
+}
+
+/* RIGHT */
+
+.right{
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:60px;
+}
+
+.right h2{
+    font-size:36px;
+    margin-bottom:35px;
+    color:#222;
+}
+
+label{
+    display:block;
+    margin-top:20px;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+input{
+    width:100%;
+    padding:15px;
+
+    border:1px solid #ddd;
+    border-radius:10px;
+
+    font-size:16px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+button{
+    width:100%;
+    margin-top:35px;
+    padding:16px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#2563eb;
+    color:white;
+
+    font-size:18px;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.bottom{
+    margin-top:35px;
+
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+
+    font-size:15px;
+}
+
+.bottom a{
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:600;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .container{
+
+        flex-direction:column;
+        height:auto;
+        margin:20px;
+    }
+
+    .left{
+
+        padding:40px;
+        text-align:center;
+    }
+
+    .left h1{
+        font-size:38px;
+    }
+
+    .left p{
+        font-size:16px;
+        line-height:28px;
+    }
+
+    .right{
+
+        padding:35px 25px;
+    }
+
+    .right h2{
+        font-size:28px;
+        text-align:center;
+    }
+
+}
+
+        /* Small Mobile */
+        @media screen and (max-width:480px){
+
+            .container{
+                width:95%;
+                padding:20px;
+            }
+
+            h1{
+                font-size:22px;
+            }
+
+            input,
+            button{
+                font-size:14px;
+            }
+        }
+
+    </style>
+</head>
 </head>
 <body>
-    <h1>Login here,</h1>
-    <form action ="/user/login" method = "post">
-        <label for="Email">Email: </label>
-        <input type="text" name="email" placeholder="Enter your Email..." required>
-        <br>
-        <label for="password">Password: </label>
-        <input type="password" name="password" placeholder="Enter your Password..." required>
-        <br>
-        <button type="submit">Login</button>
-    </form>
-    <div>
-        <form action="/signup">
-            <button name="signup">Signup</button>
-        </form>
-    </div>
 
-    <div name="note">
-        <p>NOTE: If you forgot password <a href="mailto:abhayjaiswal457@gmail.com">contact me</a></p>
-    </div>
+<div class="login-card">
+
+    <h1>Login</h1>
+
+    <form action="/user/login" method="POST">
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+    <div class="divider"></div>
+
+    <p class="switch-text">
+        Don't have an account?
+    </p>
+
+    <a href="/signup" class="signup-btn">
+        Create Account
+    </a>
+
+    <p class="note">
+        Forgot Password?
+        <a href="mailto:abhayjaiswal457@gmail.com">Contact Me</a>
+    </p>
+
+</div>
 
 </body>
 </html>

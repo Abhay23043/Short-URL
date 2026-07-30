@@ -6,34 +6,262 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <style>
-        .alert-success {
-            color: rgb(74, 203, 15);
-            font-weight: bold;
-            font-size: 15px;
-        }
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0ea5e9,#2563eb);
+}
+
+.container{
+    width:92%;
+    max-width:1400px;
+    height:82vh;
+
+    display:flex;
+
+    background:#fff;
+    border-radius:25px;
+    overflow:hidden;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.18);
+}
+
+/* LEFT */
+
+.left{
+
+    flex:1.2;
+
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:70px;
+}
+
+.left h1{
+
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.left p{
+
+    font-size:22px;
+    line-height:36px;
+    max-width:500px;
+}
+
+/* RIGHT */
+
+.right{
+
+    flex:1;
+
+    padding:60px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.right h2{
+
+    font-size:36px;
+    margin-bottom:30px;
+    color:#222;
+}
+
+label{
+
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+input{
+
+    width:100%;
+    padding:16px;
+
+    border:1px solid #ddd;
+    border-radius:10px;
+
+    font-size:16px;
+
+    margin-bottom:25px;
+}
+
+input:focus{
+
+    outline:none;
+    border-color:#2563eb;
+}
+
+button{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#2563eb;
+    color:white;
+
+    font-size:18px;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+
+    background:#1d4ed8;
+}
+
+/* RESULT */
+
+.result{
+
+    margin-top:35px;
+
+    background:#eef7ff;
+
+    border-left:5px solid #2563eb;
+
+    padding:20px;
+
+    border-radius:10px;
+}
+
+.result h3{
+
+    margin-bottom:12px;
+    color:#222;
+}
+
+.result a{
+
+    color:#2563eb;
+    font-weight:bold;
+
+    text-decoration:none;
+
+    word-break:break-all;
+}
+
+.result a:hover{
+
+    text-decoration:underline;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .container{
+
+        flex-direction:column;
+        height:auto;
+        margin:20px;
+    }
+
+    .left{
+
+        padding:40px;
+        text-align:center;
+    }
+
+    .left h1{
+
+        font-size:38px;
+    }
+
+    .left p{
+
+        font-size:16px;
+        line-height:28px;
+    }
+
+    .right{
+
+        padding:30px 25px;
+    }
+
+    .right h2{
+
+        text-align:center;
+        font-size:28px;
+    }
+}
     </style>
 </head>
 
 <body>
-    <h1>Welcome to the URL Shortener</h1>
-    <div>
-        <form action="/url" method="post">
-            <label>Enter Your Original URL: </label>
-            <input type="text" name="url" placeholder="Enter your original URL here" required>
-            <button type="submit">Generate</button>
-        </form>
+
+<div class="container">
+
+    <div class="left">
+
+        <h1>URL Shortener</h1>
+
+        <p>
+            Convert long URLs into short, easy-to-share links in seconds.
+        </p>
 
     </div>
-    <% if (locals.id) { %>
-        <p class="alert-success">
-            Short URL Generated:
+
+    <div class="right">
+
+        <h2>Generate Short URL</h2>
+
+        <form action="/url" method="POST">
+
+            <label>Original URL</label>
+
+            <input
+                type="url"
+                name="url"
+                placeholder="https://example.com"
+                required
+            >
+
+            <button type="submit">Generate URL</button>
+
+        </form>
+
+        <% if (locals.id) { %>
+
+        <div class="result">
+
+            <h3>Your Short URL</h3>
+
             <a href="/url/<%= id %>">
                 <%= baseUrl %>/url/<%= id %>
             </a>
-        </p>
+
+        </div>
+
         <% } %>
 
+    </div>
 
+</div>
 
 </body>
 

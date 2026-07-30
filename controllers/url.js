@@ -32,8 +32,6 @@ async function handleRedirectToOriginalURL(req,res){
         return res.redirect(entry.redirectURL);
     }
 
-    
-
     catch(err){
         console.error(err);
         return res.status(500).send({error: 'Internal Server Error'});
